@@ -1,0 +1,59 @@
+.header {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid black;
+  width: 380px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 160%;
+  letter-spacing: 0.15px;
+  margin: auto 0 auto 24px;
+}
+
+.body {
+  display: flex;
+  padding-top: 17px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 0 0 auto;
+  padding: 10px 20px 10px 20px;
+}
+
+.userAvatar {
+  display: flex;
+  position: relative;
+  height: 55px;
+  left: 5px;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.userInfo{
+  display: grid;
+  width: 75%;
+  position: relative;
+  left: 30px;
+}
+
+.userItem {
+  display: flex;
+  width: 100%;
+}
+
+.container {
+  display: grid;
+  margin-top: 5px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  overflow-y: auto;
+  justify-content: center;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
