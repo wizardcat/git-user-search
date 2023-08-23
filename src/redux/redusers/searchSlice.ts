@@ -1,6 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { UserInfo } from '../../types';
 
+const initialState: UserInfo = {
+  avatar_url: '',
+  name: '',
+  bio: '',
+  html_url: '',
+}
 
 export const getUser = createAsyncThunk(
   'user/fetchUser',
@@ -9,7 +15,7 @@ export const getUser = createAsyncThunk(
       const response = await fetch(`https://api.github.com/users/${searchString}`);
 
       if (response.status === 404) {
-        return undefined;
+        return initialState;
       }
 
       const user = await response.json();
@@ -22,13 +28,6 @@ export const getUser = createAsyncThunk(
   }
 );
 
-const initialState: UserInfo = {
-  avatar_url: '',
-  name: '',
-  bio: '',
-  html_url: '',
-}
-
 export const searchSlice = createSlice({
   name: 'userInfo',
   initialState,
@@ -37,12 +36,10 @@ export const searchSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getUser.fulfilled, (state, action) => {
-        const user = action.payload ? action.payload : initialState;
-
-        state.avatar_url = user.avatar_url;
-        state.bio = user.bio;
-        state.html_url = user.html_url;
-        state.name = user.name;
+        state.avatar_url = action.payload.avatar_url;
+        state.bio = action.payload.bio;
+        state.html_url = action.payload.html_url;
+        state.name = action.payload.name;
       });
   },
 });
