@@ -1,7 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-// import axios from "axios";
-// import { URL } from '../const';
-// import { Census } from '../types'
 import { UserInfo } from '../../types';
 
 
@@ -31,8 +28,6 @@ const initialState: UserInfo = {
   bio: '',
   html_url: '',
 }
-
-// const initialState: UserInfo|undefined = undefined;
 
 export const searchSlice = createSlice({
   name: 'userInfo',
