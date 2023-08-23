@@ -37,19 +37,12 @@ export const searchSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getUser.fulfilled, (state, action) => {
+        const user = action.payload ? action.payload : initialState;
 
-        if (!action.payload) {
-          state.avatar_url = initialState.avatar_url;
-          state.bio = initialState.bio;
-          state.html_url = initialState.html_url;
-          state.name = initialState.name;
-          return;
-        };
-
-        state.avatar_url = action.payload.avatar_url;
-        state.bio = action.payload.bio;
-        state.html_url = action.payload.html_url;
-        state.name = action.payload.name;
+        state.avatar_url = user.avatar_url;
+        state.bio = user.bio;
+        state.html_url = user.html_url;
+        state.name = user.name;
       });
   },
 });
