@@ -6,26 +6,23 @@ import User from '../User';
 import { useSearch } from './hooks';
 
 const Search: FC = () => {
-  const { user, searchHandle, loading, setSearchString } = useSearch();
+  const { showCard, user, searchHandle, loading, setSearchString } = useSearch();
 
   return (
     <div className={styles.search}>
       <div className={styles.searchInputs}>
         <input
           type="text"
-          className="large"
           placeholder="type user name"
-          id="app-input"
-          data-testid="app-input"
           onChange={(event) => {
             setSearchString(event.target.value);
           }}
         />
-        <button className={styles.button} id="submit-button" onClick={searchHandle}>
+        <button className={styles.button} onClick={searchHandle}>
           Search
         </button>
       </div>
-      {loading ? <Loader /> : user ? <User userData={user} /> : <NoUserFound />}
+      {loading ? <Loader /> : showCard && (user?.name !=='' ? <User userData={user} /> : <NoUserFound />)}
     </div>
   );
 };

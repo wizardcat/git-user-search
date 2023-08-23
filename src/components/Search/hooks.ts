@@ -1,37 +1,33 @@
-import { useState } from 'react';
-import { UserInfo } from '../../types';
+import { useEffect, useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
+import { getUser } from '../../redux/redusers/searchSlice';
 
-export const useSearch=()=>{
+export const useSearch = () => {
 
-const [searchString, setSearchString] = useState('');
-const [user, setUser] = useState<UserInfo>();
-const [loading, setLoading] = useState(false);
+  const user = useAppSelector((state) => state.userInfoReducer);
+  const dispatch = useAppDispatch();
 
-const getUser = async (searchString: string) => {
-  setLoading(true);
-  if (!searchString) return;
+  const [searchString, setSearchString] = useState('');
+  const [showCard, setShowCard] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const response = await fetch(`https://api.github.com/users/${searchString}`);
 
-  if (response.status === 404) {
+  useEffect(() => {
     setLoading(false);
-    setUser(undefined);
-    return;
+  }, [user]);
+
+
+  const searchHandle = () => {
+    if (!searchString) return;
+    setShowCard(true);
+    setLoading(true);
+    dispatch(getUser(searchString));
+  };
+
+
+  return {
+    showCard, user, searchHandle, loading, setSearchString
   }
-
-  const user = await response.json();
-
-  setLoading(false);
-  setUser(user);
-};
-
-const searchHandle = () => {
-  getUser(searchString);
-};
-
-return {
-  user, searchHandle, loading, setSearchString
-}
 
 }
 

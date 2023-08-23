@@ -24,9 +24,12 @@ const User: FC<UserProps> = (props) => {
             <div className={styles.userItem}>{bio}</div>
           </div>
           <div className={styles.userItem}>
-            <a href={html_url} rel="noreferrer" target="_blank">
-              GitHub profile
-            </a>
+            <div className={styles.userItem}>GitHub profile:</div>
+            <div className={styles.userItem}>
+              <a href={html_url} rel="noreferrer" target="_blank">
+                link
+              </a>
+            </div>
           </div>
         </div>
       </div>
