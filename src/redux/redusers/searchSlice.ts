@@ -12,13 +12,18 @@ export const getUser = createAsyncThunk(
   'user/fetchUser',
   async (searchString: string, thunkAPI) => {
     try {
-      const response = await fetch(`https://api.github.com/users/${searchString}`);
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), 8000);
+
+      const response = await fetch(`https://api.github.com/users/${searchString}`, { signal: controller.signal });
 
       if (response.status === 404) {
         return initialState;
       }
 
       const user = await response.json();
+
+      clearTimeout(id);
 
       return user;
 

@@ -33,7 +33,7 @@
   flex: 0 0 auto;
 }
 
-.userInfo{
+.userInfo {
   display: grid;
   width: 75%;
   position: relative;
@@ -53,6 +53,8 @@
   overflow: hidden;
   overflow-y: auto;
   justify-content: center;
+  border-radius: 5px;
+  width: 600px;
 }
 
 .container::-webkit-scrollbar {

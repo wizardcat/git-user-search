@@ -1,7 +1,11 @@
-.searchInputs {
+.searchForm {
   margin-top: 40vh;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 600px;
 }
 
 .button {
@@ -10,18 +14,14 @@
   border-radius: 4px;
   box-sizing: border-box;
   cursor: pointer;
-  font-family: Montserrat, sans-serif;
   font-size: .9em;
   margin: 5px;
   padding: 10px 15px;
   text-align: center;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
   color: aliceblue;
 }
 
-.search input {
+.searchInput {
   background-color: white;
   border-width: 0px;
   border-radius: 2px;
@@ -30,7 +30,7 @@
   font-size: 18px;
   padding: 15px;
   height: 17px;
-  width: 300px;
+  width: 90%;
 }
 
 input:focus {
